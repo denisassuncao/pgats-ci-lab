@@ -21,6 +21,9 @@ jobs:
     # definindo o ambiente onde o job será executado
     runs-on: ubuntu-latest
 
+    # condicional para garantir que o job só execute se o workflow anterior foi bem-sucedido
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
     # passos do script de build
     steps:
       #clone do repositório
