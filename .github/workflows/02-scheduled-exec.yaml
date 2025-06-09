@@ -1,19 +1,13 @@
-# CI de Nível 02 - Execução automática em push/pull_request
+# CI de Nível 02 - Execução automática agendada
 
-name: 'Execução Automática'
+name: 'Execução Agendada'
 
-# Gatilhos de execução automática
 on:
-  push:
   schedule:
-    - cron: '0 19 * * 1'  # Executa diariamente à meia-noite UTC
-    # a - minuto
-    # b - hora
-    # c - dia do mês
-    # d - mês
-    # e - dia da semana
+    - cron: '0 22 * * 1'  # Executa às 19h BRT (22h UTC) toda segunda-feira
+  # Se quiser manter push manual, adicione:
+  # workflow_dispatch:
 
-# Jobs que serão executados
 jobs:
   e2e-test:
     runs-on: ubuntu-latest
