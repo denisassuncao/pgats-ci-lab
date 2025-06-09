@@ -1,30 +1,24 @@
 # CI de Nível 04 - Disparo dos testes dentro do pipe de dev.
 
-# nome do nosso 'papeline'
+# nome do nosso 'pipeline'
 name: 'Execução Integrada'
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
 
-
-# jobs que serão executados
 jobs:
   inspecao:
     runs-on: ubuntu-latest
 
     steps:
-      # clone do repositório
       - uses: actions/checkout@v4
-      
-      # instalação do yarn
+
       - name: Instalando o Yarn
         run: npm install -g yarn
-      
-      # instalação das dependências do projeto
+
       - name: Instalando as dependências do projeto
         run: yarn
 
-      # instalação do Playwright
       - name: Checando padronização do código
         run: yarn lint
 
@@ -32,47 +26,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # clone do repositório
       - uses: actions/checkout@v4
-      
-      # instalação do yarn
+
       - name: Instalando o Yarn
         run: npm install -g yarn
-      
-      # instalação das dependências do projeto
+
       - name: Instalando as dependências do projeto
         run: yarn
 
-      # instalação do Playwright
       - name: Executando os testes unitários
         run: yarn test
 
   e2e-test:
     runs-on: ubuntu-latest
 
-    # passos do script de build
     steps:
-      #clone do repositório
       - uses: actions/checkout@v4
 
-      #instalação do Node.js
       - uses: actions/setup-node@v4
         with:
-          node-version: 22.x  
-      
-      #instalação do yarn
+          node-version: 22.x
+
       - name: Instalando o Yarn
         run: npm install -g yarn
-      
-      #instalação das dependências do projeto
+
       - name: Instalando as dependências do projeto
         run: yarn
 
-      #instalação do Playwright
       - name: Instalando o Playwright
         run: yarn playwright install
 
-      #execução dos testes E2E
       - name: Executando os testes E2E
         run: yarn run e2e
 
@@ -86,6 +69,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      #clone do repositório
       - name: Simulando o Deploy
         run: echo "Deploy realizado com sucesso!"
