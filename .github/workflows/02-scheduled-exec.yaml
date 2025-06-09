@@ -1,0 +1,38 @@
+# CI de Nível 01 - Execução automática em push/pull_request
+
+name: 'Execução Automática'
+
+# Gatilhos de execução automática
+on:
+  push:
+  schedule:
+    - cron: '0 19 * * 1'  # Executa diariamente à meia-noite UTC
+    # a - minuto
+    # b - hora
+    # c - dia do mês
+    # d - mês
+    # e - dia da semana
+
+# Jobs que serão executados
+jobs:
+  e2e-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x  
+      
+      - name: Instalando o Yarn
+        run: npm install -g yarn
+      
+      - name: Instalando as dependências do projeto
+        run: yarn
+
+      - name: Instalando o Playwright
+        run: yarn playwright install
+
+      - name: Executando os testes E2E
+        run: yarn run e2e
