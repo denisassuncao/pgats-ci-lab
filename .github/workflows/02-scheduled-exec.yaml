@@ -1,4 +1,4 @@
-# CI de Nível 01 - Execução automática em push/pull_request
+# CI de Nível 02 - Execução automática em push/pull_request
 
 name: 'Execução Automática'
 

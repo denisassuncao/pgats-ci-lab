@@ -1,13 +1,19 @@
-# CI de Nível 01 - Disparo Manual a partir de 1 clique
+# CI de Nível 03 - Disparo após a conclusão de um pipeline
 
 # nome do nosso 'papeline'
-name: 'Execução Manual'
+name: 'Execução por Deploy'
 
 # regras de disparo (gatilhos/triggers)
 # gatilho de execução manual = 'workflow_dispatch'
+# gatilho de execução agendada = 'schedule'
+# gstilho de execução a partir de outro pipeline = 'workflow_run'
+
 
 on:
-  workflow_dispatch:
+  workflow_run:
+    workflows: ['Execução Manual']  # Nome do workflow que deve ser concluído antes deste
+    types:
+      - completed  # Este workflow será acionado quando o workflow "Execução Automática" for concluído  
 
 # jobs que serão executados
 jobs:
