@@ -23,12 +23,12 @@ jobs:
       #instalação do Node.js
       - uses: actions/setup-node@v4
         with:
-          node-version: 22.x  
-      
+          node-version: 22.x
+
       #instalação do yarn
       - name: Instalando o Yarn
         run: npm install -g yarn
-      
+
       #instalação das dependências do projeto
       - name: Instalando as dependências do projeto
         run: yarn

@@ -4,7 +4,7 @@ name: 'Execução Agendada'
 
 on:
   schedule:
-    - cron: '0 22 * * 1'  # Executa às 19h BRT (22h UTC) toda segunda-feira
+    - cron: '0 22 * * 1' # Executa às 19h BRT (22h UTC) toda segunda-feira
   # Se quiser manter push manual, adicione:
   # workflow_dispatch:
 
@@ -17,11 +17,11 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22.x  
-      
+          node-version: 22.x
+
       - name: Instalando o Yarn
         run: npm install -g yarn
-      
+
       - name: Instalando as dependências do projeto
         run: yarn
 
